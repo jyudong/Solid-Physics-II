@@ -1,0 +1,312 @@
+\documentclass[reqno,a4paper,12pt]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm,geometry,soul,bm}
+
+\geometry{left=0.8in, right=0.8in, top=1in, bottom=1in}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumerate}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\usepackage{float}
+%\usepackage{wrapfig} %可以实现图片和文字同一行
+\usepackage{xeCJK}
+
+\renewcommand{\baselinestretch}{1.3}
+
+\title{Solid Physics II}
+\author{Jianyu Dong}
+
+
+\begin{document}
+\maketitle		
+
+\begin{enumerate}[1]
+
+\item I would like you to do a bit of the extended reading on the keyword of $g-factor$. There is no need to derive the origin it, nevertheless, you should answer the following questions: what is g-factor? Where does it come from? How was it measured?
+
+\begin{tcolorbox}[colback = black!5!white, colframe = black]
+g因子为磁矩与角动量量子数乘玻尔磁矩的比值。
+\[
+	\boldsymbol{\mu}_J = g_J \frac{e}{2m} \boldsymbol{J}.
+\]
+其中$\boldsymbol{J}$为任意角动量，对于轨道角动量，$g_L = 1$；对于自旋角动量，$g_S = 2$。 \\
+可以通过测量在稳恒磁场$B_0$下的能级劈裂$\Delta E = g\mu_B B_0$，从而反推出g因子。  \\
+考虑电磁场中的Dirac方程：
+\[
+	\gamma_\mu\left( \frac{\partial}{\partial x_\mu} - ieA_\mu \right)\psi + m\psi = 0
+\]
+在非相对论近似下，$E \approx m+\frac{\vec{p}^2}{2m}$,令$\psi = e^{-imt}\chi$,方程化为：
+\[
+	i\frac{\partial \chi}{\partial t} = [-i\vec{\alpha}\cdot(\vec{\nabla} - ie\vec{A}) + (\beta-1)m + eA_0] \chi.
+\]
+令$\chi = \begin{pmatrix}
+	\varphi \\
+	\varphi'
+\end{pmatrix}$,方程可化为：
+\[
+	i\frac{\partial \varphi}{\partial t} = -\frac{1}{2m}(\vec{\nabla}-ie\vec{A})^2 \varphi - \frac{e}{2m}\vec{\tau}\cdot \vec{B}\varphi +eA_0\varphi.
+\]
+取自旋算符$\vec{S} = \frac{1}{2}\vec{\tau}$,Bohr磁矩$\mu_B = \frac{e}{2m}$，方程为：
+\[
+	i\frac{\partial \varphi}{\partial t} = -\frac{1}{2m}(\vec{\nabla}-ie\vec{A})^2 \varphi - g\mu_B\vec{S}\cdot \vec{B}\varphi +eA_0\varphi.
+\]
+即自旋回磁比(gyromagnetic radio)$g=2$.
+\end{tcolorbox}
+
+
+\item You should have a basic feeling of the units that are mentioned in the field of magnetism. Unfortunately, the magnetic units are quite a mess and confusing, due to historical reasons. In general, two systems are used (you usually see a mixture of the two in literatures), i.e., cgs and SI units. Try to compile a list for the conversion for the following quantities: magnetic field, energy, magnetic moment and magnetisation.
+
+\begin{tcolorbox}[colback = black!5!white, colframe = black]
+\begin{table}[H]
+	\begin{center}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		 & 基本单位制 & 常用单位及单位换算 \\
+		\hline
+		磁感应强度B & $1T = 1kg \cdot A^{-1} \cdot s^{-2}$ & $1T = 10^4Gs$ \\
+		\hline 
+		磁场强度H & $1A\cdot m^{-1}$ & $1A\cdot m^{-1} = 4\pi\times 10^{-3} Oe$ \\
+		\hline
+		能量E & $1J = 1kg \cdot m^2 \cdot s^{-2}$ & $1eV \approx 1.6\times 10^{-19} J$ \\
+		\hline
+		磁矩$\mu$ & $1A\cdot m^2$ & $1\mu_B = 9.27\times10^{-24}A\cdot m^{2}$ \\
+		\hline
+		磁化强度M & $1A\cdot m^{-1}$ &  \\
+		\hline
+	\end{tabular}
+	\end{center}
+\end{table}
+其中$\mu_B = \frac{e\hbar}{2m_e}$；磁化强度为单位体积内的磁矩。
+\end{tcolorbox}
+
+
+\item Try to prove that $g_J$ (called Land$\acute{\text{e}}$ g-factor) is in fact the add-up effect of $\hat{J} = \hat{L} + \hat{S}$, such that
+\begin{equation}
+	g_J = \frac{3}{2} + \frac{S(S+1)-L(L+1)}{2J(J+1)}
+\end{equation}
+
+\begin{tcolorbox}[colback = black!5!white, colframe = black, breakable]
+
+%\begin{wrapfigure}[8]{r}{19em}
+%	\vspace{-20pt}
+%	\begin{center}
+%		\includegraphics{g-factor1.jpeg}
+%	\end{center}
+%\end{wrapfigure}
+
+By the definition, the g-factor is 
+\begin{equation*}
+	g_J = \frac{\mu_J/\mu_B}{J},
+\end{equation*}
+where we let $\hbar = 1$. According to Law of Cosines, we could determine $\mu_J$ as 
+\[
+	\mu_J = \mu_L \cos(\vec{L},\vec{J}) + \mu_S \cos(\vec{S},\vec{J}).
+\]
+Like the figure, we could determine that 
+\begin{align*}
+	\cos(\vec{L},\vec{J}) &= \frac{\hat{L}^2 + \hat{J}^2 - \hat{S}^2}{2\hat{L}\hat{J}}, \\
+	\cos(\vec{S},\vec{J}) &= \frac{\hat{S}^2 + \hat{J}^2 - \hat{L}^2}{2\hat{S}\hat{J}},
+\end{align*}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 5cm]{g-factor1.jpeg}
+	\end{center}
+\end{figure}
+where $\hat{L}^2 = L(L+1), \hat{S}^2 = S(S+1) ~\text{and}~ \hat{J}^2 = J(J+1)$. Let $\mu_J = g_J\mu_B\hat{J}$, applying $\mu_L = g_L\mu_B\hat{L} = \mu_B\hat{L}$ and $\mu_S = g_S\mu_B\hat{S} = 2\mu_B\hat{S}$, we could get 
+\[
+	g_J = g_L \frac{\hat{L}^2 + \hat{J}^2 - \hat{S}^2}{2\hat{J}^2} + g_S \frac{\hat{S}^2 + \hat{J}^2 - \hat{L}^2}{2\hat{J}^2} = \frac{3}{2} + \frac{S(S+1) - L(L+1)}{2J(J+1)}.
+\]
+
+\end{tcolorbox}
+
+
+\item The magnetic moment that is predicted from Hund’s Rules works quite well for rare-earth elements, but not for 3d-transition metals. Try to obtain these moments. (Hint: the magnetic moment is usually expressed in the unit of $\mu_B$): $Cu^{2+} (3d^9), Eu^{3+} (4f^6), Gd^{3+} (4f^{7}), Dy^{3+} (4f^{9})$ and $Tm^{3+} (4f^{12})$.
+
+\begin{tcolorbox}[colback = black!5!white, colframe = black]
+\begin{center}
+	\includegraphics[width = 12cm]{problem4.jpeg}
+\end{center}
+
+\end{tcolorbox}
+
+
+\item E.M. wave has an extended and colorful spectrum, spanning from static point charge (frequency = 0 Hz), as field, rf radiation, microwave. terahertz, infrared, optical light, ultraviolet, soft x-rays, tender x-rays, hard x-rays and further. Compile a table that contains all regions, and label them using the following units at the same time: (1) eV; (2) Hz; (3) nm. You should have a basic feeling of their amplitudes as an experimentalist.
+
+\begin{tcolorbox}[colback = black!5!white, colframe = black, breakable]
+\begin{table}[H]
+	\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		 & S.P.C.& ac field & rf radiation & microwave \\
+		\hline
+		eV & 0 & $2.07\times 10^{-13}$ & $4.13\times10^{-10} \sim 1.24\times10^{-4}$ & $4.14\times10^{-6}\sim1.24\times10^{-3}$ \\
+		\hline
+		Hz & 0 & 50 & $3\times10^5\sim3\times10^{10}$ & $10^{9}\sim3\times10^{11}$ \\
+		\hline
+		nm & $\infty$ & $6\times 10^{15}$ & $10^{12}\sim10^7$ & $3\times 10^8\sim1\times 10^6$ \\
+		\hline
+	\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		 & terahertz & infrared & optical light \\
+		\hline
+		eV & $4.14\times10^{-4}\sim4.14\times10^{-2}$ & $1.24\times10^{-3}\sim1.63$ & $1.59\sim3.10$ \\ 
+		\hline
+		Hz & $10^{11}\sim10^{13}$ & $3\times10^{11} \sim 3.95\times10^{14}$ & $3.85\times10^{14}\sim7.5\times10^{14}$ \\
+		\hline
+		nm & $3\times10^6\sim3\times10^4$ & $10^6\sim760$ & $780\sim400$ \\
+		\hline
+	\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		 & ultraviolet & soft x-rays & hard x-rays \\%& hard x-rays \\
+		\hline
+		eV & $3.10\sim124$ & $124\sim1.24\times10^{4}$ & $1.24\times10^4\sim1.24\times10^5$ \\ 
+		\hline
+		Hz & $7.5\times10^{14}\sim3\times10^{16}$ & $3\times10^{16}\sim3\times10^{18}$ & $3\times10^{18}\sim3\times10^{19}$ \\
+		\hline
+		nm & $400\sim10$ & $10\sim0.1$ & $0.1\sim0.01$ \\
+		\hline
+	\end{tabular}
+	\end{center}
+\end{table}
+
+%\begin{table}[H]
+%	\begin{center}
+%	\begin{tabular}{|c|c|}
+%		\hline 
+%		 & hard x-rays \\
+%		eV & \\ 
+%		Hz & \\
+%		nm & \\
+%		\hline
+%	\end{tabular}
+%	\end{center}
+%\end{table}
+
+\end{tcolorbox}
+
+
+\item In continuum approximation, anisotropic exchange interaction is made up by components of Lifshitz invariance: 
+\begin{equation}
+	L_{i, j}^{(k)} = m_i\frac{\partial m_j}{\partial x_k} - m_j\frac{\partial m_i}{\partial x_k},
+\end{equation}
+where $i,j,k$ are index of the dimensionality. The energy density is therefore constructed as:
+\begin{equation}
+	w = D_1 L^{(x)} + D_2 L^{(y)} + D_3 L^{(z)}.
+\end{equation}
+In cubic systems without inversion centre, $D_1 = D_2 = D_3 = D$ is a scalar that parameterizes the strength of the anisotropic exchange. Now we are facing the $competing ~ interaction$ right away, as meanwhile, there exists exchange interaction in the form of $A(\nabla \textbf{m})^2$. Try to prove that under such scheme, a one-dimensional helical order is the true ground state.
+
+\begin{tcolorbox}[colback = black!5!white, colframe = black, breakable]
+For the cubic systems, $D_1 = D_2 = D_3 = D$, the density of Hamiltonian could be written as
+\[
+	\omega = D\vec{m} \cdot (\nabla \times \vec{m}) + A(\nabla \vec{m})^2.
+\]
+%对于一维体系，$D>0$，则Hamiltonian密度第一项使系统趋向于无旋；$A<0$，第二项使系统趋向于相邻磁矩反向。 \\
+考虑螺旋态
+\[
+	\vec{m}(x) = (0, \cos(q_h x), \sin(q_hx)).
+\]
+可以计算：
+\[
+	D\vec{m}\cdot (\nabla\times\vec{m}) = -Dq_h; ~~ A(\nabla \vec{m})^2 = Aq_h^2.
+\]
+则能量密度可以写为：
+\[
+	\omega = Aq_h^2 - Dq_h
+\]
+能量取极值有：
+\[
+	\frac{d\omega}{dq_h} = 2Aq_h-D = 0.
+\]
+解得：
+\[
+	q_h = \frac{D}{2A}.
+\]
+即螺旋态$\vec{m}(x) = (0,\cos(q_hx),\sin(q_hx))$为基态，当$q_h = \frac{D}{2A}$.
+\end{tcolorbox}
+
+
+\item If two neighbouring spins $\hat{\textbf{S}}_i$ and $\hat{\textbf{S}}_j$ exchange in a way of $\hat{H} = -2J \hat{\textbf{S}}_i \cdot \hat{\textbf{S}}_j$, prove that 
+\begin{equation}
+	\frac{d \langle \hat{\textbf{S}}_i \rangle}{dt} = \frac{2J}{\hbar} \langle \hat{\textbf{S}}_i \times \hat{\textbf{S}}_j \rangle.
+\end{equation}
+
+\begin{tcolorbox}[colback = black!5!white, colframe = black]
+由Heisenberg运动方程可知：
+\begin{align*}
+	\frac{d\langle \hat{S}_i^x \rangle}{dt} =& \frac{i}{\hbar} \langle [\hat{H}, \hat{S}_i^x] \rangle \\
+	=& \frac{-2iJ}{\hbar} \langle [\hat{S}_i^x\hat{S}_j^x+\hat{S}_i^y\hat{S}_j^y+\hat{S}_i^z\hat{S}_j^z, \hat{S}_i^x] \rangle \\
+	=& \frac{-2J}{\hbar} \langle \hat{S}_i^z\hat{S}_j^y - \hat{S}_i^y\hat{S}_j^z \rangle \\
+	=& \frac{-2J}{\hbar} \langle \hat{S}_i \times \hat{S}_j \rangle_x.
+\end{align*}
+同样的，有：
+\[
+	\frac{d\langle \hat{S}_i^y \rangle}{dt} = \frac{-2J}{\hbar} \langle \hat{S}_i \times \hat{S}_j \rangle_y; ~~ \frac{d\langle \hat{S}_i^z \rangle}{dt} = \frac{-2J}{\hbar} \langle \hat{S}_i \times \hat{S}_j \rangle_z.
+\]
+即：
+\[
+	\frac{d\langle \hat{\mathbf{S}}_i \rangle}{dt} = \frac{2J}{\hbar} \langle \hat{\mathbf{S}}_i \times \hat{\mathbf{S}}_j \rangle.
+\]
+\end{tcolorbox}
+
+
+\item As a traditional exercise, you should work out the spin wave dispersion spectrum for a two-dimensional ferromagnetic square lattice (set the lattice constant of $a$).
+
+\begin{tcolorbox}[colback = black!5!white, colframe = black, breakable]
+Hamiltonian为：
+\[
+	H = -2J \sum_{i,j} \hat{\vec{S}}_{ij} \cdot (\hat{\vec{S}}_{ij+1} + \hat{\vec{S}}_{i+1j}).
+\]
+由Heisenberg运动方程，可得：
+\begin{align*}
+	&\frac{dS_{ij}^x}{dt} = \frac{i}{\hbar} \langle [\hat{H}, \hat{S_{ij}^x}] \rangle \\
+	=& -\frac{2iJ}{\hbar} \langle [S_{ij}^y (S_{ij+1}^y + S_{i+1j}^y + S_{ij-1}^y + S_{i-1j}^y) + S_{ij}^z (S_{ij+1}^z + S_{i+1j}^z + S_{ij-1}^z + S_{i-1j}^z), S_{ij}^x] \rangle \\
+	=& -\frac{2iJ}{\hbar} \langle -iS_{ij}^z(S_{ij+1}^y + S_{i+1j}^y + S_{ij-1}^y + S_{i-1j}^y) + iS_{ij}^y (S_{ij+1}^z + S_{i+1j}^z + S_{ij-1}^z + S_{i-1j}^z) \rangle
+\end{align*}
+将所有自选z分量近似为$S$，方程为：
+\[
+	\frac{dS_{ij}^x}{dt} = \frac{2J}{\hbar}(4S S_{ij}^y - S(S_{ij+1}^y + S_{i+1j}^y + S_{ij-1}^y + S_{i-1j}^y)).
+\]
+同样的，对于$S_{ij}^y$可以列出如下方程：
+\[
+	\frac{dS_{ij}^y}{dt} = \frac{2J}{\hbar}(S(S_{ij+1}^x + S_{i+1j}^x + S_{ij-1}^x + S_{i-1j}^x) -4S S_{ij}^x).
+\]
+考虑行波解：
+\[
+	S_{ij}^x = A e^{i(\vec{k}\cdot\vec{r}_{ij}-\omega t)}, ~~ S_{ij}^y = B e^{i(\vec{k}\cdot\vec{r}_{ij}-\omega t)}
+\]
+带入上述方程可得：
+\[\left\{
+\begin{aligned}
+	&i\omega A + \frac{2JS}{\hbar}(4-2\cos k_xa-2\cos k_ya) B = 0; \\
+	&\frac{2JS}{\hbar}(4-2\cos k_xa-2\cos k_ya) A - i\omega B = 0.
+\end{aligned}\right.
+\]
+方程对$A,B$有非零解，则需要系数行列式等于0，即
+\begin{align*}
+	&\left\vert \begin{matrix}
+		i\omega & \frac{2JS}{\hbar}(4-2\cos k_xa-2\cos k_ya) \\
+		\frac{2JS}{\hbar}(4-2\cos k_xa-2\cos k_ya) & -i\omega
+	\end{matrix} \right\vert \\
+	=& \omega^2-\left( \frac{2JS}{\hbar}(4-2\cos k_xa-2\cos k_ya) \right)^2 = 0.
+\end{align*}
+则自旋波色散为：
+\[
+	\omega = \frac{4JS}{\hbar}(2-\cos k_xa-\cos k_ya).
+\]
+\end{tcolorbox}
+
+\end{enumerate}
+
+\end{document}
